@@ -55,6 +55,7 @@ exports.getClassesBySection = async (req, res) => {
     }
 
     const classes = await Class.find({ section: sectionId })
+      .populate("section", "title")
       .sort({ createdAt: -1 })
 
     res.json(classes);

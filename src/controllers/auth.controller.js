@@ -39,6 +39,7 @@ exports.register = async (req, res) => {
     })
 
   } catch (error) {
+    console.error("ERROR DE REGISTRO:", error);
     res.status(500).json({ message: "Error del servidor", error })
   }
 };
@@ -51,6 +52,11 @@ exports.login = async (req, res) => {
     const user = await User.findOne({ email })
     if (!user) {
       return res.status(400).json({ message: "Credenciales invalidas" })
+    }
+
+    if (!user.isVerified) {
+      return res.status(401).json({ 
+      message: "Debes verificar tu cuenta antes de iniciar sesión" })
     }
 
     const isMatch = await bcrypt.compare(password, user.password);
@@ -70,3 +76,27 @@ exports.login = async (req, res) => {
   }
 };
 
+
+exports.verifyAccount = async (req, res) => {
+  try {
+    const { token } = req.params;
+
+    const user = await User.findOne({ verificationToken: token })
+
+    if (!user) {
+      return res.status(400).json({ message: "Token inválido o expirado" })
+    }
+
+    user.isVerified = true;
+    user.verificationToken = undefined;
+
+    await user.save();
+
+    res.json({ message: "Cuenta verificada correctamente" })
+
+  } 
+  catch (error) {
+    console.error("ERROR AL VERIFICAR:", error);
+    res.status(500).json({ message: "Error del servidor" })
+  }
+};

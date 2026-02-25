@@ -39,6 +39,3 @@ app.use("/api/sections", sectionRoutes);
 
 const classRoutes = require("./routes/class.routes");
 app.use("/api/classes", classRoutes);
-
-
-app.use("/api/auth", authRoutes);
