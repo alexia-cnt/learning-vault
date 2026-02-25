@@ -66,6 +66,32 @@ exports.getClassesBySection = async (req, res) => {
 };
 
 
+exports.getClassById = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const classItem = await Class.findById(id);
+
+    if (!classItem) {
+      return res.status(404).json({ message: "Clase no encontrada" })
+    }
+
+    const section = await Section.findById(classItem.section);
+    const board = await Board.findById(section.board);
+
+    if (board.user.toString() !== req.user._id.toString()) {
+      return res.status(403).json({ message: "No autorizado" })
+    }
+
+    res.json(classItem);
+
+  } 
+  catch (error) {
+    res.status(500).json({ message: "Error al obtener la clase", error })
+  }
+};
+
+
 exports.updateClass = async (req, res) => {
   try {
     const { id } = req.params;
