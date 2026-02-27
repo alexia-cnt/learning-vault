@@ -31,6 +31,30 @@ exports.getMyBoards = async (req, res) => {
 };
 
 
+exports.getBoardById = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const board = await Board.findById(id);
+
+    if (!board) {
+      return res.status(404).json({ message: "Tablero no encontrado" })
+    }
+
+    // Verificar que el tablero pertenece al usuario logueado
+    if (board.user.toString() !== req.user._id.toString()) {
+      return res.status(403).json({ message: "No autorizado" })
+    }
+
+    res.json(board);
+
+  } 
+  catch (error) {
+    res.status(500).json({ message: "Error al obtener el tablero", error })
+  }
+};
+
+
 exports.updateBoard = async (req, res) => {
   try {
     const { id } = req.params;

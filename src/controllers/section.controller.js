@@ -62,6 +62,31 @@ exports.getSectionsByBoard = async (req, res) => {
 };
 
 
+exports.getSectionById = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const section = await Section.findById(id);
+
+    if (!section) {
+      return res.status(404).json({ message: "Sección no encontrada" })
+    }
+
+    const board = await Board.findById(section.board);
+
+    if (board.user.toString() !== req.user._id.toString()) {
+      return res.status(403).json({ message: "No autorizado" })
+    }
+
+    res.json(section);
+
+  } 
+  catch (error) {
+    res.status(500).json({ message: "Error al obtener la sección", error })
+  }
+};
+
+
 exports.updateSection = async (req, res) => {
   try {
     const {id} = req.params;

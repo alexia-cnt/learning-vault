@@ -5,7 +5,6 @@ const connectDB = require("./config/db");
 
 const app = express();
 
-
 connectDB();
 
 
@@ -19,7 +18,6 @@ app.use(
 
 app.use(express.json());
 
-
 app.get("/", (req, res) => {
   res.json({ message: "API running" });
 });
@@ -27,13 +25,6 @@ app.get("/", (req, res) => {
 
 const authRoutes = require("./routes/auth.routes");
 app.use("/api/auth", authRoutes);
-
-
-const PORT = process.env.PORT || 4000;
-
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
 
 
 const boardRoutes = require("./routes/board.routes");
@@ -50,3 +41,18 @@ app.use("/api/classes", classRoutes);
 
 const blockRoutes = require("./routes/block.routes");
 app.use("/api/blocks", blockRoutes);
+
+
+const searchRoutes = require("./routes/search");
+app.use("/api/search", searchRoutes);
+
+
+app.use(require("./middleware/error.middleware"));
+
+
+
+const PORT = process.env.PORT || 4000;
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
