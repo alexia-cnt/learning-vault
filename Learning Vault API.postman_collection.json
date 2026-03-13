@@ -1,0 +1,983 @@
+{
+  "info": {
+    "_postman_id": "231ead38-73af-4026-90d5-6fe71c79bb5c",
+    "name": "Learning Vault API",
+    "description": "### Welcome to Postman! This is your first collection. \n\nCollections are your starting point for building and testing APIs. You can use this one to:\n\n• Group related requests\n• Test your API in real-world scenarios\n• Document and share your requests\n\nUpdate the name and overview whenever you’re ready to make it yours.\n\n[Learn more about Postman Collections.](https://learning.postman.com/docs/collections/collections-overview/)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "53091694",
+    "_collection_link": "https://go.postman.co/collection/53091694-231ead38-73af-4026-90d5-6fe71c79bb5c?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Register",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"name\": \"Test User\",\r\n  \"email\": \"test4@test.com\",\r\n  \"password\": \"Password123\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:4000/api/auth/register",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "4000",
+              "path": [
+                "api",
+                "auth",
+                "register"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"email\": \"test4@test.com\",\r\n  \"password\": \"Password123\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:4000/api/auth/login",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "4000",
+              "path": [
+                "api",
+                "auth",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Verify Account",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:4000/api/auth/verify/7758223d53f45662633d8dbab78799e1d67d00cb6a735122f071b97da3150677",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "4000",
+              "path": [
+                "api",
+                "auth",
+                "verify",
+                "7758223d53f45662633d8dbab78799e1d67d00cb6a735122f071b97da3150677"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Boards",
+      "item": [
+        {
+          "name": "Get Boards",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5YjM0ZWMzNTc2ODZhMzkzNDE2YTJiZiIsImlhdCI6MTc3MzM1ODgyMSwiZXhwIjoxNzczMzYyNDIxfQ.nqI36MGlAcxIL8RhUyk6mUOhGlbd5MEJkQ-sK2TYJsM",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:4000/api/boards",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "4000",
+              "path": [
+                "api",
+                "boards"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Board",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5YjM0ZWMzNTc2ODZhMzkzNDE2YTJiZiIsImlhdCI6MTc3MzM1ODgyMSwiZXhwIjoxNzczMzYyNDIxfQ.nqI36MGlAcxIL8RhUyk6mUOhGlbd5MEJkQ-sK2TYJsM",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"title\": \"Nuevo tablero\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:4000/api/boards",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "4000",
+              "path": [
+                "api",
+                "boards"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Board 2",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5YjM0ZWMzNTc2ODZhMzkzNDE2YTJiZiIsImlhdCI6MTc3MzM1ODgyMSwiZXhwIjoxNzczMzYyNDIxfQ.nqI36MGlAcxIL8RhUyk6mUOhGlbd5MEJkQ-sK2TYJsM",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"title\": \"Tablero de prueba 2\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:4000/api/boards",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "4000",
+              "path": [
+                "api",
+                "boards"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Boards By Id",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5YjM0ZWMzNTc2ODZhMzkzNDE2YTJiZiIsImlhdCI6MTc3MzM1ODgyMSwiZXhwIjoxNzczMzYyNDIxfQ.nqI36MGlAcxIL8RhUyk6mUOhGlbd5MEJkQ-sK2TYJsM",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:4000/api/boards/69b3512157686a393416a2d2",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "4000",
+              "path": [
+                "api",
+                "boards",
+                "69b3512157686a393416a2d2"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Board",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5YjM0ZWMzNTc2ODZhMzkzNDE2YTJiZiIsImlhdCI6MTc3MzM1ODgyMSwiZXhwIjoxNzczMzYyNDIxfQ.nqI36MGlAcxIL8RhUyk6mUOhGlbd5MEJkQ-sK2TYJsM",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:4000/api/boards/69b3500057686a393416a2ca",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "4000",
+              "path": [
+                "api",
+                "boards",
+                "69b3500057686a393416a2ca"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Board",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5YjM0ZWMzNTc2ODZhMzkzNDE2YTJiZiIsImlhdCI6MTc3MzM1ODgyMSwiZXhwIjoxNzczMzYyNDIxfQ.nqI36MGlAcxIL8RhUyk6mUOhGlbd5MEJkQ-sK2TYJsM",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"title\": \"Tablero 2 actualizado\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:4000/api/boards/69b3512157686a393416a2d2",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "4000",
+              "path": [
+                "api",
+                "boards",
+                "69b3512157686a393416a2d2"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Sections",
+      "item": [
+        {
+          "name": "Create Section",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5YjM0ZWMzNTc2ODZhMzkzNDE2YTJiZiIsImlhdCI6MTc3MzM1ODgyMSwiZXhwIjoxNzczMzYyNDIxfQ.nqI36MGlAcxIL8RhUyk6mUOhGlbd5MEJkQ-sK2TYJsM",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"title\": \"Nueva sección\",\r\n  \"boardId\": \"69b3512157686a393416a2d2\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:4000/api/sections",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "4000",
+              "path": [
+                "api",
+                "sections"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Section",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5YjM0ZWMzNTc2ODZhMzkzNDE2YTJiZiIsImlhdCI6MTc3MzM1ODgyMSwiZXhwIjoxNzczMzYyNDIxfQ.nqI36MGlAcxIL8RhUyk6mUOhGlbd5MEJkQ-sK2TYJsM",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:4000/api/sections/69b3559d57686a393416a2de",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "4000",
+              "path": [
+                "api",
+                "sections",
+                "69b3559d57686a393416a2de"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Section 2",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5YjM0ZWMzNTc2ODZhMzkzNDE2YTJiZiIsImlhdCI6MTc3MzM1ODgyMSwiZXhwIjoxNzczMzYyNDIxfQ.nqI36MGlAcxIL8RhUyk6mUOhGlbd5MEJkQ-sK2TYJsM",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"title\": \"Nueva sección 2\",\r\n  \"boardId\": \"69b3512157686a393416a2d2\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:4000/api/sections",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "4000",
+              "path": [
+                "api",
+                "sections"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Sections By Board",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5YjM0ZWMzNTc2ODZhMzkzNDE2YTJiZiIsImlhdCI6MTc3MzM1ODgyMSwiZXhwIjoxNzczMzYyNDIxfQ.nqI36MGlAcxIL8RhUyk6mUOhGlbd5MEJkQ-sK2TYJsM",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:4000/api/sections/69b3512157686a393416a2d2",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "4000",
+              "path": [
+                "api",
+                "sections",
+                "69b3512157686a393416a2d2"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Sections By Id",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5YjM0ZWMzNTc2ODZhMzkzNDE2YTJiZiIsImlhdCI6MTc3MzM1ODgyMSwiZXhwIjoxNzczMzYyNDIxfQ.nqI36MGlAcxIL8RhUyk6mUOhGlbd5MEJkQ-sK2TYJsM",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:4000/api/sections/detail/69b3564c57686a393416a2e3",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "4000",
+              "path": [
+                "api",
+                "sections",
+                "detail",
+                "69b3564c57686a393416a2e3"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Section",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5YjM0ZWMzNTc2ODZhMzkzNDE2YTJiZiIsImlhdCI6MTc3MzM1ODgyMSwiZXhwIjoxNzczMzYyNDIxfQ.nqI36MGlAcxIL8RhUyk6mUOhGlbd5MEJkQ-sK2TYJsM",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"title\": \"Sección actualizada\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:4000/api/sections/69b3564c57686a393416a2e3",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "4000",
+              "path": [
+                "api",
+                "sections",
+                "69b3564c57686a393416a2e3"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Classes",
+      "item": [
+        {
+          "name": "Create Class",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5YjM0ZWMzNTc2ODZhMzkzNDE2YTJiZiIsImlhdCI6MTc3MzM1ODgyMSwiZXhwIjoxNzczMzYyNDIxfQ.nqI36MGlAcxIL8RhUyk6mUOhGlbd5MEJkQ-sK2TYJsM",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"title\": \"Nueva clase\",\r\n  \"sectionId\": \"69b3564c57686a393416a2e3\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:4000/api/classes",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "4000",
+              "path": [
+                "api",
+                "classes"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Class",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5YjM0ZWMzNTc2ODZhMzkzNDE2YTJiZiIsImlhdCI6MTc3MzM1ODgyMSwiZXhwIjoxNzczMzYyNDIxfQ.nqI36MGlAcxIL8RhUyk6mUOhGlbd5MEJkQ-sK2TYJsM",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:4000/api/classes/69b3579d57686a393416a2f7",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "4000",
+              "path": [
+                "api",
+                "classes",
+                "69b3579d57686a393416a2f7"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Class 2",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5YjM0ZWMzNTc2ODZhMzkzNDE2YTJiZiIsImlhdCI6MTc3MzM1ODgyMSwiZXhwIjoxNzczMzYyNDIxfQ.nqI36MGlAcxIL8RhUyk6mUOhGlbd5MEJkQ-sK2TYJsM",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"title\": \"Nueva clase 2\",\r\n  \"sectionId\": \"69b3564c57686a393416a2e3\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:4000/api/classes",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "4000",
+              "path": [
+                "api",
+                "classes"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Classes By Section",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5YjM0ZWMzNTc2ODZhMzkzNDE2YTJiZiIsImlhdCI6MTc3MzM1ODgyMSwiZXhwIjoxNzczMzYyNDIxfQ.nqI36MGlAcxIL8RhUyk6mUOhGlbd5MEJkQ-sK2TYJsM",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:4000/api/classes/section/69b3564c57686a393416a2e3",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "4000",
+              "path": [
+                "api",
+                "classes",
+                "section",
+                "69b3564c57686a393416a2e3"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Classes By Id",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5YjM0ZWMzNTc2ODZhMzkzNDE2YTJiZiIsImlhdCI6MTc3MzM1ODgyMSwiZXhwIjoxNzczMzYyNDIxfQ.nqI36MGlAcxIL8RhUyk6mUOhGlbd5MEJkQ-sK2TYJsM",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:4000/api/classes/detail/69b357bd57686a393416a2fc",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "4000",
+              "path": [
+                "api",
+                "classes",
+                "detail",
+                "69b357bd57686a393416a2fc"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Class",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5YjM0ZWMzNTc2ODZhMzkzNDE2YTJiZiIsImlhdCI6MTc3MzM1ODgyMSwiZXhwIjoxNzczMzYyNDIxfQ.nqI36MGlAcxIL8RhUyk6mUOhGlbd5MEJkQ-sK2TYJsM",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"title\": \"Clase actualizada\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:4000/api/classes/69b357bd57686a393416a2fc",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "4000",
+              "path": [
+                "api",
+                "classes",
+                "69b357bd57686a393416a2fc"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Blocks",
+      "item": [
+        {
+          "name": "Create Block",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5YjM0ZWMzNTc2ODZhMzkzNDE2YTJiZiIsImlhdCI6MTc3MzM1ODgyMSwiZXhwIjoxNzczMzYyNDIxfQ.nqI36MGlAcxIL8RhUyk6mUOhGlbd5MEJkQ-sK2TYJsM",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"type\": \"text\",\r\n  \"content\": \"Contenido de prueba\",\r\n  \"classId\": \"69b357bd57686a393416a2fc\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:4000/api/blocks",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "4000",
+              "path": [
+                "api",
+                "blocks"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Block",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5YjM0ZWMzNTc2ODZhMzkzNDE2YTJiZiIsImlhdCI6MTc3MzM1ODgyMSwiZXhwIjoxNzczMzYyNDIxfQ.nqI36MGlAcxIL8RhUyk6mUOhGlbd5MEJkQ-sK2TYJsM",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:4000/api/blocks/69b35a6657686a393416a33a",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "4000",
+              "path": [
+                "api",
+                "blocks",
+                "69b35a6657686a393416a33a"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Block 2",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5YjM0ZWMzNTc2ODZhMzkzNDE2YTJiZiIsImlhdCI6MTc3MzM1ODgyMSwiZXhwIjoxNzczMzYyNDIxfQ.nqI36MGlAcxIL8RhUyk6mUOhGlbd5MEJkQ-sK2TYJsM",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"type\": \"text\",\r\n  \"content\": \"Contenido de prueba 2\",\r\n  \"classId\": \"69b357bd57686a393416a2fc\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:4000/api/blocks",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "4000",
+              "path": [
+                "api",
+                "blocks"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Blocks By Class",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5YjM0ZWMzNTc2ODZhMzkzNDE2YTJiZiIsImlhdCI6MTc3MzM1ODgyMSwiZXhwIjoxNzczMzYyNDIxfQ.nqI36MGlAcxIL8RhUyk6mUOhGlbd5MEJkQ-sK2TYJsM",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:4000/api/blocks/69b357bd57686a393416a2fc",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "4000",
+              "path": [
+                "api",
+                "blocks",
+                "69b357bd57686a393416a2fc"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Search",
+      "item": [
+        {
+          "name": "Global Search",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5YjM0ZWMzNTc2ODZhMzkzNDE2YTJiZiIsImlhdCI6MTc3MzM1ODgyMSwiZXhwIjoxNzczMzYyNDIxfQ.nqI36MGlAcxIL8RhUyk6mUOhGlbd5MEJkQ-sK2TYJsM",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:4000/api/search?query=palabra",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "4000",
+              "path": [
+                "api",
+                "search"
+              ],
+              "query": [
+                {
+                  "key": "query",
+                  "value": "palabra"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Example Search",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5YjM0ZWMzNTc2ODZhMzkzNDE2YTJiZiIsImlhdCI6MTc3MzM1ODgyMSwiZXhwIjoxNzczMzYyNDIxfQ.nqI36MGlAcxIL8RhUyk6mUOhGlbd5MEJkQ-sK2TYJsM",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:4000/api/search?query=sistemas",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "4000",
+              "path": [
+                "api",
+                "search"
+              ],
+              "query": [
+                {
+                  "key": "query",
+                  "value": "sistemas"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
