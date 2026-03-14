@@ -19,7 +19,7 @@ const sendVerificationEmail = async (email, token) => {
     html: `
       <h2>Verifica tu cuenta</h2>
       <p>Hace click en el link de abajo para verificar tu cuenta:</p>
-      <a href="${verificationUrl}">${verificationUrl}</a>
+      <a href="${verificationLink}">${verificationLink}</a>
     `,
   });
 };
