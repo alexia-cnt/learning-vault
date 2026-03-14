@@ -1,16 +1,15 @@
 # Learning Vault – Backend API
 
-API desarrollada con **Node.js + Express + MongoDB** para la gestión de contenido educativo organizado en tableros.
+API desarrollada con **Node.js + Express + MongoDB** para gestionar contenido de estudio personal organizado en estructuras jerárquicas.
 
-El sistema permite crear estructuras de estudio personalizadas organizadas en:
-
+El sistema permite a cada usuario crear su propio espacio de aprendizaje organizando contenido en:
 Boards → Sections → Classes → Blocks
 
-Cada usuario puede crear sus propios contenidos para organizar temas de estudio y dividirlos de la forma que prefiera.
+Esto permite estructurar información de manera clara, separando temas en niveles y agregando contenido dentro de cada clase.
 
 ---
 
-# Tecnologías utilizadas
+## Tecnologías utilizadas
 
 - Node.js
 - Express
@@ -25,179 +24,177 @@ Cada usuario puede crear sus propios contenidos para organizar temas de estudio 
 
 ---
 
-# Arquitectura del proyecto
+## Arquitectura del proyecto
 
-El backend sigue una **arquitectura en capas**:
+El backend sigue una arquitectura en capas para separar responsabilidades.
 
-routes → definición de endpoints
-controllers → lógica de request / response
-services → lógica de negocio
-repositories → acceso a base de datos
-middleware → autenticación y manejo de errores
-utils → helpers (JWT, envío de emails, etc)
-
-
----
-
-# Seguridad
-
-El sistema implementa:
-
-- Hash de contraseñas con **bcrypt**
-- Autenticación con **JWT**
-- Tokens con expiración
-- Middleware de protección de rutas
-- Verificación de cuenta por email
-- Variables de entorno protegidas con **dotenv**
+src/
+├ config/
+│ └ db.js
+├ controllers/
+├ middleware/
+├ models/
+├ routes/
+├ utils/
+└ app.js
 
 ---
 
-# Verificación por email
+## Modelo de datos
 
-Al registrarse, el usuario recibe un correo de verificación.
+Entidades principales:
 
-Para el desarrollo se utiliza **Mailtrap** para simular el envío de emails.
-
-El usuario debe confirmar su cuenta antes de poder iniciar sesión.
-
----
-
-# Entidades principales
-
-Users
-Boards
-Sections
-Classes
-Blocks
-
+- Users
+- Boards
+- Sections
+- Classes
+- Blocks
 
 Relaciones:
 
-User → Boards
-Board → Sections
-Section → Classes
+User → Boards  
+Board → Sections  
+Section → Classes  
 Class → Blocks
 
+Cada usuario puede crear su propia estructura de estudio.
 
 ---
 
-# Instalación
+## Instalación
 
-1. Clonar repositorio
-
-```bash
-git clone AQUI_VA_LA_URL_DEL_REPO_BACKEND
-cd backend
-
+1. Clonar el repositorio
+git clone https://github.com/alexia-cnt/learning-vault-backend.git
+cd learning-vault-backend
 
 2. Instalar dependencias
-
 npm install
-Variables de entorno
 
-Crear archivo .env
+---
+
+## Variables de entorno
+
+Crear un archivo `.env` en la raíz del proyecto.
 
 Ejemplo:
 
-PORT=4000 
-MONGO_URI=TU_URI_DE_MONGODB
-JWT_SECRET=TU_SECRET
+PORT=4000
 
-EMAIL_USER=MAILTRAP_USER
-EMAIL_PASS=MAILTRAP_PASS
+MONGO_URI=tu_uri_de_mongodb_atlas
 
-CLIENT_URL=http://localhost:5173
-Ejecutar el servidor
+JWT_SECRET=tu_clave_secreta
+
+MAIL_HOST=sandbox.smtp.mailtrap.io
+MAIL_PORT=2525
+MAIL_USER=tu_usuario_mailtrap
+MAIL_PASS=tu_password_mailtrap
+
+FRONTEND_URL=http://localhost:5173
+
+
+El sistema utiliza Mailtrap para simular el envío de correos durante el desarrollo.
+
+---
+
+## Ejecutar el servidor
+
 npm run dev
 
-Servidor disponible en:
+Servidor disponible en: http://localhost:4000
 
-http://localhost:4000
-Autenticación
+---
 
-Las rutas protegidas requieren un token JWT.
+## Autenticación
 
-Ejemplo de header:
+Las rutas protegidas requieren un token **JWT**.
 
+Header requerido: 
 Authorization: Bearer <token>
 
 
 ---
 
-Endpoints principales
+## Verificación de email
 
+Al registrarse, el sistema envía un correo de verificación utilizando Mailtrap. El usuario debe acceder al enlace de verificación antes de poder utilizar la cuenta.
 
-Auth
+Usuario de prueba disponible:
 
-POST /api/auth/register
-POST /api/auth/login
-GET  /api/auth/verify/:token
-
-
-Boards
-
-GET    /api/boards
-POST   /api/boards
-GET    /api/boards/:id
-PUT    /api/boards/:id
-DELETE /api/boards/:id
-
-
-Sections
-
-GET    /api/sections/:boardId
-GET    /api/sections/detail/:id
-POST   /api/sections
-PUT    /api/sections/:id
-DELETE /api/sections/:id
-
-
-Classes
-
-GET    /api/classes/section/:sectionId
-GET    /api/classes/detail/:id
-POST   /api/classes
-PUT    /api/classes/:id
-DELETE /api/classes/:id
-
-
-Blocks
-
-GET    /api/blocks/:classId
-POST   /api/blocks
-DELETE /api/blocks/:id
-Search
-GET /api/search?query=texto
+Email: test6@test.com
+Password: Password123
 
 
 ---
 
+## Endpoints principales
 
-Postman collection
+### Auth
 
+POST /api/auth/register  
+POST /api/auth/login  
+GET /api/auth/verify/:token  
 
-El archivo:
-learning-vault-api.postman_collection.json
+### Boards
 
-incluye ejemplos de requests para probar todos los endpoints.
+GET /api/boards  
+POST /api/boards  
+GET /api/boards/:id  
+PUT /api/boards/:id  
+DELETE /api/boards/:id  
 
+### Sections
 
-Para usarlo:
+GET /api/sections  
+POST /api/sections  
+PUT /api/sections/:id  
+DELETE /api/sections/:id  
 
-1. Abrir Postman
+### Classes
 
-2. Importar el archivo JSON
+GET /api/classes  
+POST /api/classes  
+PUT /api/classes/:id  
+DELETE /api/classes/:id  
 
-3. Ejecutar las requests disponibles
+### Blocks
 
+GET /api/blocks  
+POST /api/blocks  
+PUT /api/blocks/:id  
+DELETE /api/blocks/:id  
 
 ---
 
-Funcionalidades futuras
+## Postman Collection
 
+El proyecto incluye una Postman Collection para probar los endpoints de la API.
 
-La arquitectura fue diseñada para permitir extensiones futuras:
+Permite:
 
-- sección social para compartir tableros
-- edición de contenido
-- mejoras visuales en dashboard
+- registrar usuarios
+- iniciar sesión
+- obtener token JWT
+- probar endpoints protegidos
+- crear y administrar boards, sections, classes y blocks
+
+La colección puede importarse directamente en Postman.
+
+---
+
+## Mejoras futuras
+
+Algunas funcionalidades previstas para próximas versiones del proyecto:
+
+- Implementar soporte completo para tableros públicos y privados en la API.
+- Permitir que los tableros públicos puedan ser explorados desde la sección social de la aplicación.
+- Ampliar los endpoints para permitir filtrar y explorar tableros públicos de otros usuarios.
+- Agregar Google reCAPTCHA en el registro de usuarios para evitar registros automáticos o bots.
+- Implementar un sistema de recordatorios de estudio, donde el usuario pueda configurar avisos diarios para mantener una rutina de aprendizaje constante.
+
+---
+
+## Repositorio
+
+Backend:  
+https://github.com/alexia-cnt/learning-vault-backend
+
