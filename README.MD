@@ -1,40 +1,68 @@
-Learning Vault – Backend API
+# Learning Vault – Backend API
 
-Api desarrollada con Node.js + Express + MongoDB para la gestión de tableros, secciones, clases y bloques de contenido. Tiene la intención de facilitar e impulsar el estudio autodidactico. Sirve para crear tus propias cursadas con los temas que a vos te interesen y que lo dividas de la manera que más te guste.
+API desarrollada con **Node.js + Express + MongoDB** para la gestión de contenido educativo organizado en tableros.
 
-Este backend implementa autenticación segura con JWT, verificación de email, arquitectura en capas y CRUD completo con relaciones entre entidades. Tecnologías utilizadas: Node.js, Express, MongoDB + Mongoose, JWT (autenticación con expiración), bcrypt (hash de contraseñas), Nodemailer (envío de correos), dotenv y CORS.
+El sistema permite crear estructuras de estudio personalizadas organizadas en:
+
+Boards → Sections → Classes → Blocks
+
+Cada usuario puede crear sus propios contenidos para organizar temas de estudio y dividirlos de la forma que prefiera.
+
+---
+
+# Tecnologías utilizadas
+
+- Node.js
+- Express
+- MongoDB
+- Mongoose
+- JWT (autenticación)
+- bcrypt (hash de contraseñas)
+- Nodemailer
+- Mailtrap (simulación de envío de emails)
+- dotenv
+- CORS
+
+---
+
+# Arquitectura del proyecto
+
+El backend sigue una **arquitectura en capas**:
+
+routes → definición de endpoints
+controllers → lógica de request / response
+services → lógica de negocio
+repositories → acceso a base de datos
+middleware → autenticación y manejo de errores
+utils → helpers (JWT, envío de emails, etc)
 
 
-El proyecto sigue una arquitectura en capas:
+---
 
-Routes → definen endpoints
-Controllers → manejan request/response
-Middleware → autenticación y validaciones
-Utils → helpers (JWT, email, etc.)
+# Seguridad
 
+El sistema implementa:
 
-Para la seguridad cuenta con
+- Hash de contraseñas con **bcrypt**
+- Autenticación con **JWT**
+- Tokens con expiración
+- Middleware de protección de rutas
+- Verificación de cuenta por email
+- Variables de entorno protegidas con **dotenv**
 
-Hash de contraseñas con bcrypt
-Autenticación con JWT (Bearer Token)
-Tokens con expiración
-Middleware de protección de rutas
-Verificación de cuenta por email (mailtrap)
-Variables de entorno protegidas con dotenv
+---
 
+# Verificación por email
 
-Verificación por email
+Al registrarse, el usuario recibe un correo de verificación.
 
-Al registrarse, el usuario recibe un correo con un enlace de activación. Debe confirmarlo antes de poder iniciar sesión. En este caso use mailtrap para hacer la simulación.
+Para el desarrollo se utiliza **Mailtrap** para simular el envío de emails.
 
+El usuario debe confirmar su cuenta antes de poder iniciar sesión.
 
-Funcionalidad futura preparada
+---
 
-El sistema fue diseñado para permitir en el futuro que ciertos contenidos puedan marcarse como públicos y compartirse con otros usuarios. Actualmente todas las entidades son privadas por usuario, pero la estructura ya permite extender la visibilidad sin modificar la arquitectura principal.
-Como esto, hay varias cosas a mejorar, algunas mas extensas que otras pero no tuve tiempo suficiente para desarrollarlo como me gustaria, asi que algunas cosas las deje como muestra visual.
-
-
-Entidades principales
+# Entidades principales
 
 Users
 Boards
@@ -42,77 +70,134 @@ Sections
 Classes
 Blocks
 
+
 Relaciones:
 
-Un usuario → muchos tableros
-Un tablero → muchas secciones
-Una sección → muchas clases
-Una clase → muchos bloques
+User → Boards
+Board → Sections
+Section → Classes
+Class → Blocks
 
 
-Instalación y ejecución
+---
 
-1- Clonar repositorio
-git clone <URL_DEL_REPO>
+# Instalación
+
+1. Clonar repositorio
+
+```bash
+git clone AQUI_VA_LA_URL_DEL_REPO_BACKEND
 cd backend
 
-2- Instalar dependencias
-npm install
 
-3- Crear archivo .env
+2. Instalar dependencias
+
+npm install
+Variables de entorno
+
+Crear archivo .env
 
 Ejemplo:
 
-PORT=4000
-MONGO_URI=tu_uri_de_mongodb
-JWT_SECRET=tu_secret
-EMAIL_USER=tu_email
-EMAIL_PASS=tu_password
-CLIENT_URL=http://localhost:5173
+PORT=4000 
+MONGO_URI=TU_URI_DE_MONGODB
+JWT_SECRET=TU_SECRET
 
-4- Ejecutar servidor
+EMAIL_USER=MAILTRAP_USER
+EMAIL_PASS=MAILTRAP_PASS
+
+CLIENT_URL=http://localhost:5173
+Ejecutar el servidor
 npm run dev
 
-Servidor corriendo en:
+Servidor disponible en:
 
 http://localhost:4000
-
-
 Autenticación
 
-Para acceder a rutas protegidas:
+Las rutas protegidas requieren un token JWT.
+
+Ejemplo de header:
 
 Authorization: Bearer <token>
 
 
+---
+
 Endpoints principales
+
 
 Auth
 
 POST /api/auth/register
 POST /api/auth/login
-GET /api/auth/verify/:token
+GET  /api/auth/verify/:token
+
 
 Boards
 
-GET /api/boards
-POST /api/boards
+GET    /api/boards
+POST   /api/boards
+GET    /api/boards/:id
+PUT    /api/boards/:id
 DELETE /api/boards/:id
+
 
 Sections
 
-GET /api/sections/:boardId
-POST /api/sections
+GET    /api/sections/:boardId
+GET    /api/sections/detail/:id
+POST   /api/sections
+PUT    /api/sections/:id
 DELETE /api/sections/:id
+
 
 Classes
 
-GET /api/classes/:sectionId
-POST /api/classes
+GET    /api/classes/section/:sectionId
+GET    /api/classes/detail/:id
+POST   /api/classes
+PUT    /api/classes/:id
 DELETE /api/classes/:id
+
 
 Blocks
 
-GET /api/blocks/:classId
-POST /api/blocks
+GET    /api/blocks/:classId
+POST   /api/blocks
 DELETE /api/blocks/:id
+Search
+GET /api/search?query=texto
+
+
+---
+
+
+Postman collection
+
+
+El archivo:
+learning-vault-api.postman_collection.json
+
+incluye ejemplos de requests para probar todos los endpoints.
+
+
+Para usarlo:
+
+1. Abrir Postman
+
+2. Importar el archivo JSON
+
+3. Ejecutar las requests disponibles
+
+
+---
+
+Funcionalidades futuras
+
+
+La arquitectura fue diseñada para permitir extensiones futuras:
+
+- sección social para compartir tableros
+- edición de contenido
+- mejoras visuales en dashboard
